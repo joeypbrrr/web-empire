@@ -1,0 +1,195 @@
+{
+  "generatedAt": "2026-11-07T08:48:24Z",
+  "source": "scripts/build_dashboard_data.py",
+  "repository": "joeypbrrr/web-empire",
+  "pagesBase": "https://joeypbrrr.github.io/web-empire/",
+  "location": "Reading, Pennsylvania (ZIP 19601)",
+  "workflow": [
+    "Scout",
+    "Build",
+    "Ship",
+    "Call"
+  ],
+  "statusSource": "docs/AGENTS.md",
+  "agentStatusNote": "Scaffold only. No agents are running yet.",
+  "shipNote": "2 preview folders under sites/. No lead files in leads/ yet, so nothing is marked called. These folders share the same page title.",
+  "agents": [
+    {
+      "id": "room-builder-1",
+      "name": "Room Builder 1",
+      "kind": "room",
+      "role": "Designs and builds 3D interior rooms: clean, gamer-style, nerdy aesthetic.",
+      "status": "Not running",
+      "statusDetail": "Scaffold only. No agents are running yet.",
+      "running": false,
+      "leads": [],
+      "builds": [],
+      "rooms": []
+    },
+    {
+      "id": "room-builder-2",
+      "name": "Room Builder 2",
+      "kind": "room",
+      "role": "Same brief with a different room theme, so the set stays varied.",
+      "status": "Not running",
+      "statusDetail": "Scaffold only. No agents are running yet.",
+      "running": false,
+      "leads": [],
+      "builds": [],
+      "rooms": []
+    },
+    {
+      "id": "room-builder-3",
+      "name": "Room Builder 3",
+      "kind": "room",
+      "role": "Same brief, and also polishes lighting, props and performance across all rooms.",
+      "status": "Not running",
+      "statusDetail": "Scaffold only. No agents are running yet.",
+      "running": false,
+      "leads": [],
+      "builds": [],
+      "rooms": []
+    },
+    {
+      "id": "lead-gen-1",
+      "name": "Lead Gen 1",
+      "kind": "lead",
+      "role": "Scouts, researches and builds for businesses in Reading, PA 19601 itself.",
+      "status": "Not running",
+      "statusDetail": "Scaffold only. No agents are running yet.",
+      "running": false,
+      "leads": [],
+      "builds": [],
+      "rooms": []
+    },
+    {
+      "id": "lead-gen-2",
+      "name": "Lead Gen 2",
+      "kind": "lead",
+      "role": "Same job for the surrounding towns near Reading.",
+      "status": "Not running",
+      "statusDetail": "Scaffold only. No agents are running yet.",
+      "running": false,
+      "leads": [],
+      "builds": [],
+      "rooms": []
+    },
+    {
+      "id": "lead-gen-3",
+      "name": "Lead Gen 3",
+      "kind": "lead",
+      "role": "Same job across niches the others haven't covered, and QA-checks every site before it ships.",
+      "status": "Not running",
+      "statusDetail": "Scaffold only. No agents are running yet.",
+      "running": false,
+      "leads": [],
+      "builds": [],
+      "rooms": []
+    }
+  ],
+  "leads": [],
+  "rooms": [],
+  "sites": [
+    {
+      "slug": "neon-moon",
+      "name": "Neon Moon Tattoo",
+      "title": "Neon Moon Tattoo \u2014 Unofficial Concept Preview",
+      "description": "Unofficial concept preview for Neon Moon Tattoo in Reading, Pennsylvania. Not affiliated with or endorsed by the studio.",
+      "path": "sites/neon-moon/",
+      "previewUrl": "https://joeypbrrr.github.io/web-empire/sites/neon-moon/",
+      "unofficial": true,
+      "noindex": true
+    },
+    {
+      "slug": "neon-moon-studio",
+      "name": "Neon Moon Tattoo",
+      "title": "Neon Moon Tattoo \u2014 Unofficial Concept Preview",
+      "description": "Unofficial concept preview for Neon Moon Tattoo in Reading, Pennsylvania. Not affiliated with or endorsed by the studio.",
+      "path": "sites/neon-moon-studio/",
+      "previewUrl": "https://joeypbrrr.github.io/web-empire/sites/neon-moon-studio/",
+      "unofficial": true,
+      "noindex": true
+    }
+  ],
+  "readyToShip": [
+    {
+      "slug": "neon-moon",
+      "name": "Neon Moon Tattoo",
+      "title": "Neon Moon Tattoo \u2014 Unofficial Concept Preview",
+      "description": "Unofficial concept preview for Neon Moon Tattoo in Reading, Pennsylvania. Not affiliated with or endorsed by the studio.",
+      "path": "sites/neon-moon/",
+      "previewUrl": "https://joeypbrrr.github.io/web-empire/sites/neon-moon/",
+      "unofficial": true,
+      "noindex": true
+    },
+    {
+      "slug": "neon-moon-studio",
+      "name": "Neon Moon Tattoo",
+      "title": "Neon Moon Tattoo \u2014 Unofficial Concept Preview",
+      "description": "Unofficial concept preview for Neon Moon Tattoo in Reading, Pennsylvania. Not affiliated with or endorsed by the studio.",
+      "path": "sites/neon-moon-studio/",
+      "previewUrl": "https://joeypbrrr.github.io/web-empire/sites/neon-moon-studio/",
+      "unofficial": true,
+      "noindex": true
+    }
+  ],
+  "updates": [
+    {
+      "sha": "ddee3fba9c7a50763b506d3431333a30ebb69949",
+      "shortSha": "ddee3fb",
+      "author": "joeypbrrr",
+      "date": "2026-11-07T02:56:56-05:00",
+      "subject": "Restore neon-moon-studio to the original Neon Moon design (exact copy of sites/neon-moon from cb90c5f)",
+      "url": "https://github.com/joeypbrrr/web-empire/commit/ddee3fba9c7a50763b506d3431333a30ebb69949"
+    },
+    {
+      "sha": "caeb004bd019daef8202e277fb30ab888de84353",
+      "shortSha": "caeb004",
+      "author": "joeypbrrr",
+      "date": "2026-11-07T02:54:57-05:00",
+      "subject": "Merge pull request #3 from joeypbrrr/cursor/neon-moon-restore-05fd",
+      "url": "https://github.com/joeypbrrr/web-empire/commit/caeb004bd019daef8202e277fb30ab888de84353"
+    },
+    {
+      "sha": "76d7eafd3931cfdc35a64906bad4f386bfc5e431",
+      "shortSha": "76d7eaf",
+      "author": "Cursor Agent",
+      "date": "2026-11-07T07:54:10+00:00",
+      "subject": "Restore the original Neon Moon preview and tighten its spacing.",
+      "url": "https://github.com/joeypbrrr/web-empire/commit/76d7eafd3931cfdc35a64906bad4f386bfc5e431"
+    },
+    {
+      "sha": "f2d52afbacbda5be7ece3c72bfce9035ff8472c8",
+      "shortSha": "f2d52af",
+      "author": "joeypbrrr",
+      "date": "2026-11-07T02:45:09-05:00",
+      "subject": "Merge pull request #2 from joeypbrrr/cursor/neon-moon-studio-05fd",
+      "url": "https://github.com/joeypbrrr/web-empire/commit/f2d52afbacbda5be7ece3c72bfce9035ff8472c8"
+    },
+    {
+      "sha": "c1e90913f2a592360c1282070a11a9d60da04865",
+      "shortSha": "c1e9091",
+      "author": "Cursor Agent",
+      "date": "2026-11-07T07:44:16+00:00",
+      "subject": "Add a separate hand-set preview for Neon Moon Tattoo.",
+      "url": "https://github.com/joeypbrrr/web-empire/commit/c1e90913f2a592360c1282070a11a9d60da04865"
+    },
+    {
+      "sha": "cb90c5f147eb4f2f943e8f080f17070653419705",
+      "shortSha": "cb90c5f",
+      "author": "joeypbrrr",
+      "date": "2026-11-07T01:59:35-05:00",
+      "subject": "Add an unofficial Neon Moon Tattoo concept preview. (#1)",
+      "url": "https://github.com/joeypbrrr/web-empire/commit/cb90c5f147eb4f2f943e8f080f17070653419705"
+    },
+    {
+      "sha": "c0c626dae3f1a9cb9851b5d6ba1a82a6737229c9",
+      "shortSha": "c0c626d",
+      "author": "joeypbrrr",
+      "date": "2026-11-07T01:18:08-05:00",
+      "subject": "Scaffold Web Empire: brief, agent roles, and Scout-Build-Ship-Call workflow",
+      "url": "https://github.com/joeypbrrr/web-empire/commit/c0c626dae3f1a9cb9851b5d6ba1a82a6737229c9"
+    }
+  ],
+  "warnings": []
+}
