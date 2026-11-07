@@ -2,6 +2,7 @@
   var header = document.querySelector(".site-header");
   var toggle = document.querySelector(".nav-toggle");
   var panel = document.getElementById("site-nav");
+  var tiles = Array.prototype.slice.call(document.querySelectorAll(".tile"));
   var filterButtons = Array.prototype.slice.call(document.querySelectorAll("[data-filter]"));
   var filterStatus = document.getElementById("filter-status");
   var dialog = document.getElementById("lightbox");
@@ -14,20 +15,15 @@
   var formReset = document.getElementById("form-reset");
   var openIndex = 0;
 
-  function plates() {
-    return Array.prototype.slice.call(document.querySelectorAll(".plate"));
-  }
-
-  function visiblePlates() {
-    return plates().filter(function (plate) {
-      return !plate.hidden;
+  function visibleTiles() {
+    return tiles.filter(function (tile) {
+      return !tile.hidden;
     });
   }
 
   function setMenu(open) {
     if (!toggle || !panel) return;
     toggle.setAttribute("aria-expanded", open ? "true" : "false");
-    toggle.textContent = open ? "Close" : "Menu";
     panel.classList.toggle("is-open", open);
     document.body.classList.toggle("nav-open", open);
   }
@@ -41,37 +37,17 @@
         setMenu(false);
       });
     });
-    document.addEventListener("click", function (event) {
-      if (!panel.classList.contains("is-open")) return;
-      if (panel.contains(event.target) || toggle.contains(event.target)) return;
-      setMenu(false);
-    });
     document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape" && panel.classList.contains("is-open")) setMenu(false);
+      if (event.key === "Escape") setMenu(false);
     });
   }
 
   if (header) {
     var onScroll = function () {
-      header.classList.toggle("is-scrolled", window.scrollY > 4);
+      header.classList.toggle("is-scrolled", window.scrollY > 8);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-  }
-
-  function applyFilter(filter) {
-    plates().forEach(function (plate) {
-      var link = plate.querySelector("a");
-      var tags = link ? (link.getAttribute("data-tags") || "").split(",") : [];
-      plate.hidden = filter !== "all" && tags.indexOf(filter) === -1;
-    });
-    if (filterStatus) {
-      var count = visiblePlates().length;
-      filterStatus.textContent = count === 0
-        ? "No pieces in this set."
-        : "Showing " + count + (count === 1 ? " piece" : " pieces");
-    }
-    if (dialog && dialog.open) dialog.close();
   }
 
   filterButtons.forEach(function (button) {
@@ -80,44 +56,60 @@
       filterButtons.forEach(function (other) {
         other.setAttribute("aria-pressed", other === button ? "true" : "false");
       });
-      applyFilter(filter);
+      tiles.forEach(function (tile) {
+        var tags = (tile.getAttribute("data-tags") || "").split(",");
+        tile.hidden = filter !== "all" && tags.indexOf(filter) === -1;
+      });
+      if (filterStatus) {
+        var count = visibleTiles().length;
+        filterStatus.textContent = "Showing " + count + (count === 1 ? " piece" : " pieces");
+      }
+      if (dialog && dialog.open) dialog.close();
     });
   });
 
   function showSlide(index) {
-    var current = visiblePlates();
+    var current = visibleTiles();
     if (!current.length || !dialog || !lbImage) return;
     openIndex = (index + current.length) % current.length;
-    var plate = current[openIndex];
-    var link = plate.querySelector("a");
-    var img = plate.querySelector("img");
-    lbImage.src = link ? link.getAttribute("href") : "";
+    var tile = current[openIndex];
+    var full = tile.getAttribute("href");
+    var img = tile.querySelector("img");
+    lbImage.src = full;
     lbImage.alt = img ? img.alt : "";
-    if (img) {
-      lbImage.width = img.width;
-      lbImage.height = img.height;
-    }
-    lbTitle.textContent = link ? (link.getAttribute("data-title") || "") : "";
-    lbCaption.textContent = link ? (link.getAttribute("data-caption") || "") : "";
+    lbTitle.textContent = tile.getAttribute("data-title") || "";
+    lbCaption.textContent = tile.getAttribute("data-caption") || "";
     lbCount.textContent = (openIndex + 1) + " of " + current.length;
   }
 
-  function openLightbox(plate) {
+  function openLightbox(tile) {
     if (!dialog || typeof dialog.showModal !== "function") return;
-    var current = visiblePlates();
-    var index = current.indexOf(plate);
+    var current = visibleTiles();
+    var index = current.indexOf(tile);
     if (index < 0) return;
     showSlide(index);
     if (!dialog.open) dialog.showModal();
   }
 
-  plates().forEach(function (plate) {
-    var link = plate.querySelector("a");
-    if (!link) return;
-    link.addEventListener("click", function (event) {
+  tiles.forEach(function (tile) {
+    tile.addEventListener("click", function (event) {
       if (!dialog || typeof dialog.showModal !== "function") return;
       event.preventDefault();
-      openLightbox(plate);
+      openLightbox(tile);
+    });
+  });
+
+  document.querySelectorAll("[data-open-lightbox]").forEach(function (link) {
+    link.addEventListener("click", function (event) {
+      var id = link.getAttribute("data-open-lightbox");
+      var tile = document.getElementById(id);
+      if (!tile || !dialog || typeof dialog.showModal !== "function") return;
+      event.preventDefault();
+      if (tile.hidden) {
+        var allButton = document.querySelector('[data-filter="all"]');
+        if (allButton) allButton.click();
+      }
+      openLightbox(tile);
     });
   });
 
@@ -134,22 +126,6 @@
         showSlide(openIndex - 1);
       }
     });
-    var touchX = null;
-    var touchY = null;
-    dialog.addEventListener("touchstart", function (event) {
-      if (!event.changedTouches || !event.changedTouches.length) return;
-      touchX = event.changedTouches[0].clientX;
-      touchY = event.changedTouches[0].clientY;
-    }, { passive: true });
-    dialog.addEventListener("touchend", function (event) {
-      if (touchX == null || !event.changedTouches || !event.changedTouches.length) return;
-      var dx = event.changedTouches[0].clientX - touchX;
-      var dy = event.changedTouches[0].clientY - touchY;
-      touchX = null;
-      if (Math.abs(dx) < 48 || Math.abs(dx) < Math.abs(dy)) return;
-      if (dx < 0) showSlide(openIndex + 1);
-      else showSlide(openIndex - 1);
-    }, { passive: true });
     var prev = document.getElementById("lb-prev");
     var next = document.getElementById("lb-next");
     var closeBtn = document.getElementById("lb-close");
@@ -161,7 +137,6 @@
   if (form && formSuccess) {
     form.addEventListener("submit", function (event) {
       event.preventDefault();
-      if (typeof form.reportValidity === "function" && !form.reportValidity()) return;
       form.hidden = true;
       formSuccess.hidden = false;
       formSuccess.focus();
@@ -176,5 +151,19 @@
       var first = form.querySelector("input, textarea, select");
       if (first) first.focus();
     });
+  }
+
+  var revealNodes = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window && revealNodes.length) {
+    document.documentElement.classList.add("js");
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-in");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+    revealNodes.forEach(function (node) { observer.observe(node); });
   }
 })();
