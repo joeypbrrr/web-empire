@@ -1,0 +1,12 @@
+{
+  "name": "web-empire",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "data": "python3 scripts/build_dashboard_data.py",
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.65.0"
+  }
+}

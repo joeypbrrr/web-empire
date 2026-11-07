@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="3D floor for the Web Empire crew in Reading, Pennsylvania. Room builders, lead generators, and sites ready to ship.">
+  <meta name="theme-color" content="#1a1424">
+  <title>Web Empire</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect fill='%231a1424' width='16' height='16'/%3E%3Ccircle cx='8' cy='8' r='4' fill='%233ee0c5'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#crew">Skip to agents</a>
+  <div class="app">
+    <div class="stage">
+      <canvas id="floor" aria-label="3D room of the Web Empire floor. Choose an agent below to open their panel."></canvas>
+      <div class="topbar">
+        <div class="brand">
+          <p class="eyebrow" id="location">Reading, Pennsylvania</p>
+          <h1>Web Empire</h1>
+        </div>
+        <ol class="flow" id="flow" aria-label="Workflow"></ol>
+      </div>
+      <p class="hint">Drag to look · pinch to zoom · tap an agent</p>
+      <button class="reset" id="reset-view" type="button">Reset view</button>
+      <p class="boot" id="boot">Loading the floor…</p>
+    </div>
+    <div class="dock">
+      <nav class="crew" id="crew" aria-label="Agents">
+        <h2>Agents</h2>
+        <div class="crew-list" id="crew-list"></div>
+      </nav>
+      <section class="ship" aria-labelledby="ship-title">
+        <h2 id="ship-title">Ready to Ship</h2>
+        <p class="note" id="ship-note"></p>
+        <div class="ship-list" id="ship-list"></div>
+        <p class="note" id="unassigned" hidden></p>
+      </section>
+      <section class="feed" aria-labelledby="feed-title">
+        <h2 id="feed-title">Latest updates</h2>
+        <ol id="updates"></ol>
+      </section>
+    </div>
+  </div>
+  <div id="agent-panel" class="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="panel-title">
+    <div class="sheet-card">
+      <div class="sheet-head">
+        <h2 id="panel-title">Agent</h2>
+        <button class="panel-close" id="panel-close" type="button">Close</button>
+      </div>
+      <div class="sheet-body" id="panel-body"></div>
+    </div>
+  </div>
+  <noscript>This floor needs JavaScript to load data/empire.json and the 3D room.</noscript>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
